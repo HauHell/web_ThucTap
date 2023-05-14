@@ -3,6 +3,9 @@
     <div class="col-12">
       <h2 class="mb-2 page-title"><?= $title ?></h2>
       <p class="card-text">Orders Information</p>
+      <button type="button" class="btn mb-2 btn-info">
+        <a style="color:white; text-decoration: none;" href="<?php echo base_url() ?>/admin/order/print"><i class="fe fe-24 fe-printer"></i>Print</a>
+      </button>
       <div class="row my-4">
         <!-- Small table -->
         <div class="col-md-12">

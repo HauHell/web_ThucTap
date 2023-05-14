@@ -56,6 +56,7 @@ $routes->get('/admin/order', 'Admin\Order::listOrder');
 $routes->post('/admin/order/deleteorder', 'Admin\Order::delete');
 $routes->post('/admin/order/editorder', 'Admin\Order::edit');
 $routes->post('/admin/order/getorder', 'Admin\Order::getorder');
+$routes->get('/admin/order/print', 'Admin\Order::export');
 //customer account
 $routes->get('/admin/customeraccount', 'Admin\Customer::listCustomer');
 $routes->post('admin/customer/addcustomeraccount', 'Admin\Customer::add');
