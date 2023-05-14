@@ -1,0 +1,176 @@
+<!-- ##### Right Side Cart Area ##### -->
+<div class="cart-bg-overlay"></div>
+
+<div class="right-side-cart-area">
+
+    <!-- Cart Button -->
+    <div class="cart-button">
+        <a href="#" id="rightSideCart"><img src="assetsclient/img/core-img/bag.svg" alt=""> <span><?php if (isset($items)) {
+                                                                                                        echo count($items);
+                                                                                                    } ?></span></a>
+    </div>
+
+    <div class="cart-content d-flex">
+
+        <!-- Cart List Area -->
+        <div class="cart-list">
+            <?php
+
+            if (isset($items)) {
+                foreach ($items as $item) { ?>
+                    <!-- Single Cart Item -->
+                    <div class="single-cart-item" >
+                        <a href="#" class="product-image">
+                            <img onclick="updateproduct(<?php echo $item['id']; ?>)" src="../../../../assets/products/<?= esc($item['image']) ?>" class="cart-thumb" alt="" style="object-fit: contain;height:260px;width:200px">
+                            <!-- Cart Item Desc -->
+                            <div class="cart-item-desc">
+                                <span   onclick="removeCart(<?php echo $item['id']; ?>)" class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                                <span class="badge">NQH Shop</span>
+                                <h6><?= esc($item['name']) ?></h6>
+                                <h6><?= esc($item['quantity']) ?></h6>
+                                <p class="price">$<?= esc($item['price']) ?></p>
+                            </div>
+                        </a>
+                    </div>
+                <?php }} ?>
+        </div>
+
+
+
+
+        <!-- Cart Summary -->
+        <div class="cart-amount-summary">
+
+            <h2>Summary</h2>
+            <?php
+            if (isset($items)) {
+            ?>
+                <ul class="summary-table">
+
+                    <li><span>subtotal:</span> <span>$<?= esc($total) ?></span></li>
+                    <li><span>delivery:</span> <span>Free</span></li>
+                    <li><span>discount:</span> <span>-0%</span></li>
+                    <li><span>total:</span> <span>$<?= esc($total) ?></span></li>
+                </ul>
+            <?php } ?>
+            <div class="checkout-btn mt-100">
+                <?php $session = session();
+
+                if (!empty($session->get('s_customerid'))) {
+                ?>
+                    <a href="/checkout" style="margin-left:30%;" class="btn essence-btn">check out</a>
+                    <?php
+                } else {
+                    ?>
+                        <button type="button" style="margin-left:30%;" class="btn essence-btn" data-toggle="modal" data-target="#checkout">check out</button>
+                    <?php
+                }
+                    ?>
+            </div>
+
+            <!-- model check out -->
+            <div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Check Out</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="margin-left: 5%;">
+                            <a href="checkout" type="button" class="btn essence-btn">Continue as Guest</a>
+                            <a href="login" type="button" style="margin-left: 5%;" class="btn essence-btn">Sign In</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- ##### Right Side Cart End ##### -->
+
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb_area bg-img" style="background-image: url(assetsclient/img/bg-img/breadcumb.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>place order</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Checkout Area Start ##### -->
+<div class="checkout_area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="order-details-confirmation">
+
+                    <div class="cart-page-heading">
+                        <h5>Order Information </h5>
+                        <p>#<?php for ($i = 0; $i < 1; $i++) {
+                                echo $orderdetails[$i]['order_id'];
+                            } ?></p>
+                    </div>
+
+                    <ul class="order-details-form mb-4">
+                        <?php for ($i = 0; $i < 1; $i++) { ?>
+                            <li><span><?php echo $orderdetails[$i]['order_name'] ?></span></li>
+                            <li><span><?php echo $orderdetails[$i]['order_address'] . " ,
+                             " . $orderdetails[$i]['order_city'] . " , " . $orderdetails[$i]['order_province'] ?></span></li>
+                            <li><span><?php echo $orderdetails[$i]['order_city'] ?></span></li>
+                            <li><span><?php echo $orderdetails[$i]['order_phone'] ?></span></li>
+                            <li style="text-transform: none;"><span><?php echo $orderdetails[$i]['order_email'] ?></span></li>
+                            <li style="color:red"><span><?php if ($orderdetails[$i]['order_status'] == 0) {
+                                                            echo "Đang Xử Lý";
+                                                        } else if ($orderdetails[$i]['order_status'] == 1) {
+                                                            echo "Đang Giao";
+                                                        } else if ($orderdetails[$i]['order_status'] == 2) {
+                                                            echo "Đã Giao";
+                                                        } else {
+                                                            echo "Đã Hủy";
+                                                        } ?></span></li>
+                        <?php } ?>
+                    </ul>
+
+
+                </div>
+            </div>
+            <div class="col-6 col-md-5 col-lg-6 ml-lg-auto">
+                <div class="order-details-confirmation">
+
+                    <div class="cart-page-heading">
+                        <h5>Product Information</h5>
+                        <p>The Details</p>
+                    </div>
+
+                    <ul class="order-details-form mb-4">
+
+                        <li><span>Name</span><span>Quantity</span><span>Price</span></li>
+                        <?php
+                        $total = 0;
+                        foreach ($orderdetails as $orderdetail) {
+                            $total += $orderdetail['product_price'] * $orderdetail['order_quantity'] ?>
+
+                            <li><span style="width:40%;"><?php echo $orderdetail['product_name'] ?></span><span style="width:30%" style="margin:right"><?php echo $orderdetail['order_quantity'] ?>
+                                </span><span><?php echo $orderdetail['product_price'] ?></span></li>
+                        <?php } ?>
+                        <li><span>Total</span><span></span><span style="color:red"><?php echo $total ?></span></li>
+                    </ul>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- ##### Checkout Area End ##### -->
