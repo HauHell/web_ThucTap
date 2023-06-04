@@ -27,8 +27,7 @@
 
       <form class="col-lg-3 col-md-4 col-10 mx-auto text-center" method="post" action="loginAction">
         <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-          <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg"
-           xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
+          <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
             <g>
               <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
               <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
@@ -39,13 +38,11 @@
         <h1 class="h6 mb-3">Sign in</h1>
         <div class="form-group">
           <label for="inputEmail" class="sr-only">User Name</label>
-          <input type="text" class="form-control form-control-lg" name="username"
-           placeholder="User Name" required="" autofocus="">
+          <input type="text" class="form-control form-control-lg" name="username" placeholder="User Name" required="" autofocus="">
         </div>
         <div class="form-group">
           <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" class="form-control form-control-lg" name="password" id="password" 
-          placeholder="Password" required="">
+          <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Password" required="">
         </div>
         <div style="color:red;margin-bottom:10px;display:none">
 
@@ -83,11 +80,11 @@
     const password = document.querySelector('#password');
 
     togglePassword.addEventListener('click', function(e) {
-        // toggle the type attribute
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        // toggle the eye slash icon
-        this.classList.toggle('fa-eye-slash');
+      // toggle the type attribute
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      // toggle the eye slash icon
+      this.classList.toggle('fa-eye-slash');
     });
   </script>
 </body>

@@ -64,6 +64,7 @@ $routes->post('admin/customer/editcustomeraccount', 'Admin\Customer::edit');
 $routes->post('admin/customer/deletecustomeraccount', 'Admin\Customer::delete');
 //routes login
 $routes->get('/admin/login', 'Admin\User::loginPage');
+
 $routes->post('/admin/loginAction', 'Admin\User::loginAction');
 
 

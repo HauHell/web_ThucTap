@@ -126,11 +126,11 @@ if (isset($customers)) {
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="first_name">First Name <span>*</span></label>
-                                            <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $customers['customer_firstname'] ?>" required>
+                                            <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $customers['customer_firstname'] ? $customers['customer_firstname']:''  ?>" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="last_name">Last Name <span>*</span></label>
-                                            <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $customers['customer_lastname'] ?>" required>
+                                            <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $customers['customer_lastname'] ? $customers['customer_lastname']: '' ?>" required>
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="country">Country <span>*</span></label>
@@ -150,24 +150,24 @@ if (isset($customers)) {
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="street_address">Address <span>*</span></label>
-                                            <input type="text" class="form-control mb-3" name="address" value="<?php echo $customers['customer_address'] ?>" id="street_address" required value="">
+                                            <input type="text" class="form-control mb-3" name="address" value="<?php echo $customers['customer_address']? $customers['customer_address'] :'' ?>" id="street_address" required value="">
 
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="city">Town/City <span>*</span></label>
-                                            <input type="text" class="form-control" name="city" value="<?php echo $customers['customer_town_city'] ?>" required id="city">
+                                            <input type="text" class="form-control" name="city" value="<?php echo $customers['customer_town_city'] ? $customers['customer_town_city']:'' ?>" required id="city">
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="state">Province <span>*</span></label>
-                                            <input type="text" class="form-control" name="province" value="<?php echo $customers['customer_province'] ?>" required id="state">
+                                            <input type="text" class="form-control" name="province" value="<?php echo $customers['customer_province'] ? $customers['customer_province']:''?>" required id="state">
                                         </div>
                                         <div class="col-12 mb-3">
                                             <label for="phone_number">Phone No <span>*</span></label>
-                                            <input type="number" class="form-control" name="phone" required id="phone_number" min="0" value="<?php echo $customers['customer_phone'] ?>">
+                                            <input type="number" class="form-control" name="phone" required id="phone_number" min="0" value="<?php echo $customers['customer_phone'] ? $customers['customer_phone']: '' ?>">
                                         </div>
                                         <div class="col-12 mb-4">
                                             <label for="email_address">Email Address <span>*</span></label>
-                                            <input type="email" class="form-control" name="email" required id="email_address" value="<?php echo $customers['customer_email'] ?>">
+                                            <input type="email" class="form-control" name="email" required id="email_address" value="<?php echo $customers['customer_email']? $customers['customer_email']:'' ?>">
                                         </div>
 
                                         <div class="col-12">

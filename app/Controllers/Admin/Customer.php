@@ -46,15 +46,14 @@ class Customer extends BaseController
     public function edit(){
         $image = $this->request->getFile('image');
         if ($image->isValid()) {
-            $image->move('./assets/avatars');
+            $image->move('./assetsclient/avatars');
         }
         $imagename = $image->getName();
         if(!empty($imagename)) {
             if($_POST['oldimage']!=null){
-                unlink('./assets/avatars/' . $_POST['oldimage']);
+                unlink('./assetsclient/avatars/' . $_POST['oldimage']);
             }  
         }
-
         if ($imagename == "") {
             $imagename = $_POST['oldimage'];
         }

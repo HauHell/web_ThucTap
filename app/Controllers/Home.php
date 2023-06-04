@@ -87,7 +87,7 @@ class Home extends BaseController
         $products = $product_model->findAll();
         $data['categories'] = $categories;
         $data['products'] = $products;
-        return '<script>window.location.assign("/")</script>';
+        return '<script>window.location.assign("/login")</script>';
     }
 
     public function loginAction()
@@ -107,7 +107,6 @@ class Home extends BaseController
             $data = json_decode($rs['customer_cart'], TRUE);
 
             $session->set('cart', $data);
-
             return '<script>window.location.assign("/shop")</script>';
         } else {
             return '<script>window.location.assign("/login")</script>';
@@ -237,6 +236,7 @@ class Home extends BaseController
             'category' => $getproducts['category_id'],
             'quantity' => $_POST['quantity'],
         );
+        
         $session = session();
         if ($session->has('cart')) {
             $index = $this->exists($_POST['id']);
@@ -253,7 +253,7 @@ class Home extends BaseController
                 }
             }
             $session->set('cart', $cart);
-            if (!empty($session->get('s_customerid'))) {
+            if (($session->get('s_customerid'))) {
                 $customer_model = new CustomerModel();
                 $data = [
                     'customer_cart' => json_encode($cart),
@@ -434,21 +434,23 @@ class Home extends BaseController
     {
 
         $session = session();
-        if ($session->has('cart')) {
-            $data['items'] = array_values(session('cart'));
-            $data['total'] = $this->total();
-            if ($session->get('s_customerid')) {
-                $customer_model = new CustomerModel();
-                $customers = $customer_model->where('customer_id', $session->get('s_customerid'))->first();
-                $order_model = new OrderModel();
-                $orders =$order_model->where('order_customer_id',$session->get('s_customerid'))->orderBy('order_id', 'DESC')->findAll();
-                $data['orders'] = $orders;
-                $data['customers'] = $customers;
+        if ($session->get('s_customerid')) {
+            $customer_model = new CustomerModel();
+            $customers = $customer_model->where('customer_id', $session->get('s_customerid'))->first();
+            $order_model = new OrderModel();
+            $orders =$order_model->where('order_customer_id',$session->get('s_customerid'))->orderBy('order_id', 'DESC')->findAll();
+            $data['orders'] = $orders;
+            $data['customers'] = $customers;
+            if ($session->has('cart')) {
+                $data['items'] = array_values(session('cart'));
+                $data['total'] = $this->total();
+               
             }
             return view('templates/header', $data)
-                . view('pages/' . 'profile', $data)
-                . view('templates/footer');
+            . view('pages/' . 'profile', $data)
+            . view('templates/footer');
         }
+        
         return view('templates/header')
             . view('pages/' . 'profile')
             . view('templates/footer');
